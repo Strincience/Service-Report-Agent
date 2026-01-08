@@ -3,6 +3,7 @@ venv/
 
 # Secrets
 credentials/
+.env
 
 # Python cache
 __pycache__/

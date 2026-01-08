@@ -16,10 +16,16 @@ sheet = client.open("Service Report Agent").sheet1
 
 from schema_mapper import map_row_to_report_schema
 
-clean_data = map_row_to_report_schema(records[0])
+clean_data = map_row_to_report_schema(sheet.get_all_records()[0])
 
 import json
-print(json.dumps(clean_data, indent=2))
+# print(json.dumps(clean_data, indent=2))
+
+from groq_client import generate_report
+
+report_text = generate_report(clean_data)
+print(report_text)
+
 
 
 # print(sheet.get_all_records()[0])
