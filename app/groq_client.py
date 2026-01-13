@@ -2,12 +2,15 @@ import os
 import json
 from groq import Groq
 from dotenv import load_dotenv
+from pathlib import Path
 
-load_dotenv("../venv/.env")
+BASE_DIR = Path(__file__).resolve().parent.parent
+load_dotenv(BASE_DIR / ".env")
 
 def generate_report(clean_schema: dict, rag_context: str = "") -> str:
     api_key = os.getenv("GROQ_API_KEY")
 
+    
     if not api_key:
         raise RuntimeError("GROQ_API_KEY not found in environment variables")
 

@@ -2,7 +2,7 @@ import gspread
 from google.oauth2.service_account import Credentials
 
 creds = Credentials.from_service_account_file(
-    "Credentials/chapel-report-agent-dbcb1250296e.json",
+    "../Credentials/chapel-report-agent-dbcb1250296e.json",
     scopes=[
     "https://www.googleapis.com/auth/spreadsheets",
     "https://www.googleapis.com/auth/drive.readonly"
@@ -25,6 +25,16 @@ from groq_client import generate_report
 
 report_text = generate_report(clean_data)
 print(report_text)
+
+
+from docx_generator import generate_docx
+from datetime import datetime
+
+output_file = f"Sunday_Service_Report_{datetime.now().strftime('%Y%m%d_%H%M%S')}.docx"
+
+generate_docx(report_text, output_file)
+
+print(f"✅ DOCX generated: {output_file}")
 
 
 
