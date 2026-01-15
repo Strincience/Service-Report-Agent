@@ -8,6 +8,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 load_dotenv(BASE_DIR / ".env")
 
 def generate_report(clean_schema: dict, rag_context: str = "") -> str:
+    assert clean_schema["heading"]["service_date"] is not None
     api_key = os.getenv("GROQ_API_KEY")
 
     
